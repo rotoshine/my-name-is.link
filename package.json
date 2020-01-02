@@ -1,5 +1,6 @@
 {
   "name": "my-name-is.link",
+  "homepage": "http://mynameis.link",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
