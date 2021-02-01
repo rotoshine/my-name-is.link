@@ -1,25 +1,28 @@
 import React from 'react'
 import { random } from 'lodash'
 import { GetServerSideProps, InferGetServerSidePropsType } from 'next'
-import Head from 'next/head'
+import Image from 'next/image'
+
 interface Source {
   type: 'image' | 'video'
-  item: Image | Video
+  item: ImageSource | Video
 }
 
 interface Video {
   id: string
 }
 
-interface Image {
+interface ImageSource {
   src: string
   bgColor?: string
   isFullScreen?: boolean
   fullScreenType?: 'cover' | 'contain'
+  width?: number
+  height?: number
 }
 
 const sources = [
-  {
+  /*{
     type: 'image',
     item: {
       src: 'call-me-zelda.jpeg',
@@ -33,14 +36,16 @@ const sources = [
       src: '5117f73dc1c0c.jpeg',
       isFullScreen: true,
     },
-  },
+  },*/
   {
     type: 'image',
     item: {
       src: 'images.jpeg',
       bgColor: '#0f7b49',
+      width: 255,
+      height: 255,
     },
-  },
+  } /*
   {
     type: 'image',
     item: {
@@ -78,12 +83,12 @@ const sources = [
     item: {
       id: 'qXnJJyq7ydY',
     },
-  },
+  },*/,
 ] as Source[]
 
 const DEFAULT_BG_COLOR = '#ffffff'
 
-const LinkImage = ({ image }: { image: Image }) => (
+const LinkImage = ({ image }: { image: ImageSource }) => (
   <div
     className="App"
     style={{
@@ -95,18 +100,32 @@ const LinkImage = ({ image }: { image: Image }) => (
         style={{
           width: '100vw',
           height: '100vh',
-          backgroundImage: `url('/images/${image.src}')`,
-          backgroundPosition: 'center',
-          backgroundSize: image.fullScreenType ?? 'contain',
-          backgroundRepeat: 'no-repeat',
         }}
-      ></div>
+      >
+        <Image
+          src={`/images/${image.src}`}
+          layout="fill"
+          objectFit={image.fullScreenType ?? 'contain'}
+        />
+      </div>
     ) : (
-      <img
-        className="App__image"
-        src={`/images/${image.src}`}
-        alt="my name is link. not zelda."
-      />
+      <div
+        style={{
+          width: '100vw',
+          height: '100vh',
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}
+      >
+        <Image
+          className="App__image"
+          src={`/images/${image.src}`}
+          width={image.width!}
+          height={image.height!}
+          alt="my name is link. not zelda."
+        />
+      </div>
     )}
   </div>
 )
