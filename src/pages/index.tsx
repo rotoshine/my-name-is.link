@@ -106,6 +106,7 @@ const LinkImage = ({ image }: { image: ImageSource }) => (
           src={`/images/${image.src}`}
           layout="fill"
           objectFit={image.fullScreenType ?? 'contain'}
+          alt="my name is link. not zelda."
         />
       </div>
     ) : (
