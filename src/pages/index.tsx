@@ -5,10 +5,10 @@ import Image from 'next/image'
 
 interface Source {
   type: 'image' | 'video'
-  item: ImageSource | Video
+  item: ImageSource | VideoSource
 }
 
-interface Video {
+interface VideoSource {
   id: string
 }
 
@@ -22,7 +22,7 @@ interface ImageSource {
 }
 
 const sources = [
-  /*{
+  {
     type: 'image',
     item: {
       src: 'call-me-zelda.jpeg',
@@ -36,7 +36,7 @@ const sources = [
       src: '5117f73dc1c0c.jpeg',
       isFullScreen: true,
     },
-  },*/
+  },
   {
     type: 'image',
     item: {
@@ -45,7 +45,7 @@ const sources = [
       width: 255,
       height: 255,
     },
-  } /*
+  },
   {
     type: 'image',
     item: {
@@ -83,7 +83,7 @@ const sources = [
     item: {
       id: 'qXnJJyq7ydY',
     },
-  },*/,
+  },
 ] as Source[]
 
 const DEFAULT_BG_COLOR = '#ffffff'
@@ -130,7 +130,7 @@ const LinkImage = ({ image }: { image: ImageSource }) => (
   </div>
 )
 
-const LinkVideo = ({ video }: { video: Video }) => (
+const LinkVideo = ({ video }: { video: VideoSource }) => (
   <iframe
     title="link video"
     style={{ width: '100vw', height: '100vh' }}
@@ -150,9 +150,9 @@ export default function IndexPage({
   source,
 }: InferGetServerSidePropsType<typeof getServerSideProps>) {
   if (source.type === 'image') {
-    return <LinkImage image={source.item as Image} />
+    return <LinkImage image={source.item as ImageSource} />
   } else if (source.type === 'video') {
-    return <LinkVideo video={source.item as Video} />
+    return <LinkVideo video={source.item as VideoSource} />
   }
 
   return null

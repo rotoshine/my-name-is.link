@@ -9,10 +9,8 @@ class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <title>My name is LINK</title>
           <link rel="icon" href={`${PUBLIC_URL}/favicon.ico`} />
           <meta charSet="utf-8" />
-          <meta name="viewport" content="width=device-width, initial-scale=1" />
           <meta name="theme-color" content="#000000" />
           <link
             rel="apple-touch-icon"
