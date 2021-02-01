@@ -7,7 +7,7 @@ const PUBLIC_URL = process.env.NEXT_APP_PUBLIC_URL ?? 'https://mynameis.link'
 class MyDocument extends Document {
   render() {
     return (
-      <Html>
+      <Html lang="en">
         <Head>
           <meta charSet="utf-8" />
           <link rel="icon" href={`${PUBLIC_URL}/favicon.ico`} />
